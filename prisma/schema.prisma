@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @unique @default(uuid())
+  createdAt DateTime @default(now()) @map("created_at")
+  name      String
+  password  String
+  salt      String
+  email     String   @unique
+
+  partners  Partner?   @relation(fields: [partnerId], references: [id])
+  partnerId String?    @unique
+  favorites Favorite[]
+
+  @@map("users")
+}
+
+model Partner {
+  id        String   @id @unique @default(uuid())
+  createdAt DateTime @default(now()) @map("created_at")
+  name      String
+
+  favorites Favorite[]
+  User      User?
+
+  @@map("partners")
+}
+
+model Movie {
+  id        String   @id @unique @default(uuid())
+  title     String
+  genres    String[]
+  year      String
+  directors String[]
+
+  favorites Favorite[]
+
+  @@map("movies")
+}
+
+model Serie {
+  id        String   @id @unique @default(uuid())
+  title     String
+  genres    String[]
+  year      String
+  directors String[]
+
+  favorites Favorite[]
+
+  @@map("series")
+}
+
+model Favorite {
+  id String @id @unique @default(uuid())
+
+  User   User?   @relation(fields: [userId], references: [id])
+  userId String?
+
+  Partner   Partner? @relation(fields: [partnerId], references: [id])
+  partnerId String?
+
+  Movie   Movie?  @relation(fields: [movieId], references: [id])
+  movieId String?
+
+  Serie   Serie?  @relation(fields: [serieId], references: [id])
+  serieId String?
+
+  @@map("favorites")
+}
