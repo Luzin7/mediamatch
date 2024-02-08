@@ -49,11 +49,14 @@ model Movie {
 }
 
 model Serie {
-  id        String   @id @unique @default(uuid())
-  title     String
-  genres    String[]
-  year      String
-  directors String[]
+  id            Int      @id @unique @default(autoincrement())
+  title         String
+  originalTitle String   @map("original_title")
+  overview      String
+  genres        String[]
+  releaseDate   DateTime @map("release_date")
+  directors     String[]
+  voteAverage   Float    @map("vote_average ")
 
   favorites Favorite[]
 
@@ -72,8 +75,8 @@ model Favorite {
   Movie   Movie? @relation(fields: [movieId], references: [id])
   movieId Int?
 
-  Serie   Serie?  @relation(fields: [serieId], references: [id])
-  serieId String?
+  Serie   Serie? @relation(fields: [serieId], references: [id])
+  serieId Int?
 
   @@map("favorites")
 }
