@@ -1,21 +1,21 @@
 import { randomUUID } from "crypto";
 
-export class UniqueId{
+export class UniqueId {
   private id: string;
 
-  constructor(id?: string){
+  constructor(id?: string) {
     this.id = id ?? randomUUID();
   }
 
-  toString(){
-    return this.id
+  toString() {
+    return this.id;
   }
 
-  toValue(){
-    return this.id
+  toValue() {
+    return this.id;
   }
 
-  equals(id: UniqueId){
-    return this.id === id.toString()
+  equals(id: UniqueId) {
+    return this.id === id.toString();
   }
 }

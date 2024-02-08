@@ -9,6 +9,7 @@ export class UsersRepositoryImplementation implements UsersRepository {
       data: UsersPrismaMapper.toPrisma(user),
     });
   }
+
   async findById(id: string): Promise<User | null> {
     const user = await prisma.user.findUnique({
       where: { id },
@@ -20,6 +21,7 @@ export class UsersRepositoryImplementation implements UsersRepository {
 
     return UsersPrismaMapper.toEntity(user);
   }
+
   async findByEmail(email: string): Promise<User | null> {
     const user = await prisma.user.findUnique({
       where: { email },
