@@ -1,6 +1,6 @@
 import { prisma } from "@infra/database/createConnection";
 import Movie from "@module/movies/entities";
-import { MoviesRepository } from "@module/movies/repositories/contracts/UserRepository";
+import { MoviesRepository } from "@module/movies/repositories/contracts/MoviesRepository";
 import { MoviesPrismaMapper } from "./MoviesPrismaMapper";
 
 export class MoviesRepositoryImplementation implements MoviesRepository {
