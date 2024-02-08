@@ -135,3 +135,6 @@ bun.*
 
 # docker
 .data*
+
+#Rest client
+*.http
