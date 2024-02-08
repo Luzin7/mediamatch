@@ -1,3 +1,3 @@
-import { User } from "./userEntity";
+import { Movie } from "./movieEntity";
 
-export default User;
+export default Movie;
